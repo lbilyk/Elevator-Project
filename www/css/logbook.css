@@ -1,0 +1,65 @@
+#entryBox {
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    #entryBox, #logbookContainer, #logbookEntry {
+        width: calc(100% - 225px);
+    }
+
+    body.sidebar-toggled #entryBox, #logbookContainer, #logbookEntry {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    body.sidebar-toggled #entryBox, #logbookContainer, #logbookEntry {
+        width: calc(100% - 90px);
+    }
+}
+
+@media (min-width: 768px) {
+    body.sidebar-toggled #entryBox, #logbookContainer, #logbookEntry,#logbookEntries {
+        width: calc(100% - 90px);
+    }
+}
+
+@media (max-width: 768px) {
+    body #logbookEntry {
+        height: 3rem;
+        width: 200%;
+    }
+    body #addEntryButton {
+        height: 3rem;
+        width: 3rem;
+        font-size: 0.8rem;
+    }
+    body #logbookEntries .navbar {
+        width: 200%;
+    }
+
+}
+#logbookEntry{
+    font-size: 1.2rem;
+}
+
+#logbookContainer{
+
+    margin-top: 32px;
+    margin-right: 32px;
+}
+
+#logbookEntries {
+
+    height: 60vh;
+    overflow-y: scroll;
+}
+#addEntryButton {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-left: -25px;
+}
