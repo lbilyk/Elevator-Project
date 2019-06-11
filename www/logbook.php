@@ -34,6 +34,7 @@ if($_SESSION['user'] == null || $_SESSION == '') {
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="d-inline-block px-3" id="datetime"></div>
                 <div class="d-inline-block" id="loginSection"></div>
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>

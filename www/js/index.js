@@ -5,6 +5,8 @@ const NIK = "Nik Kershaw";
 let currentFloor = 1;
 
 $(function () {
+    let date = new Date();
+    $('#datetime').html(date.toLocaleString());
     $('#sidebarToggle').on('click', function (event) {
         event.preventDefault();
         $("body").toggleClass('sidebar-toggled');
