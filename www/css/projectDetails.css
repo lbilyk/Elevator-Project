@@ -1,0 +1,60 @@
+body {
+    font-family:Georgia,serif;
+    width: 950px;
+    padding: 10px 10px 10px 10px;
+    margin: 0px auto 0px auto ;
+    border: 2px solid black;
+}
+
+p {
+    font-size: 100%;
+    line-height: 20px;
+    text-align: justify;
+    text-indent: 15px;
+}
+
+ul,ol {
+    font-size: 100%;
+    line-height: 20px;
+    text-align: justify;
+}
+
+h1 {
+    font-size: 160%;
+}
+
+h2 {
+    font-size: 125%;
+}
+
+figure#fig1 {
+    border: 2px solid blue;
+    border-radius: 25px;
+    box-shadow: -10px 10px 5px gray;
+
+}
+figure#fig2 {
+    border: 2px solid red;
+    border-radius: 25px,
+    box-shadow: -10px 10px 5px gray;
+}
+
+figure img {
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+figure figcaption {
+    text-align: center;
+    font-style: italic;
+    font-size: 90%
+}
+
+.mkbold {
+    font-weight: bold;
+}
+
+.mkunderlined {
+    text-decoration: underline;
+}

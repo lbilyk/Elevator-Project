@@ -1,10 +1,10 @@
-s
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Elevator Project</title>
+    <meta name="author" content="Lyubomyr Bilyk">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,15 +18,17 @@ s
     </button>
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block" id="loginSection"></div>
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-            </div>
+            <a href="logout.php" class="nav-link d-inline">Logout</a>
+
+            <!--            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">-->
+<!--                <a class="dropdown-item" href="#">Settings</a>-->
+<!--                <div class="dropdown-divider"></div>-->
+<!--                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>-->
+<!--            </div>-->
         </li>
     </ul>
 </nav>
@@ -57,19 +59,39 @@ s
             </a>
         </li>
     </ul>
-    <div class="container-fluid">
-        <header>
-            ( Add landing information )
-        </header>
-    </div>
-    <footer class="sticky-footer">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright © Lyubomyr Bilyk</span>
+    <div class="container pt-5">
+                <div id="elevatorBuilding">
+                    <div id="elevatorShaft">
+                        <div id="elevatorContainer">
+                            <div id="elevator">
+                                <div class="door open-left" id="doorLeft"></div>
+                                <div class="door open-right" id="doorRight"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+    <div class="card bg-dark" id="elevatorControls">
+        <div class="card-text text-white text-center">Go To Floor</div>
+        <div class="card-body">
+            <div class="form-group text-left" >
+                <input type="button" class="btn btn-outline-warning" value='1' onclick="moveElevator(this.value)">
+                <input type="button" class="btn btn-outline-warning" value='2' onclick="moveElevator(this.value)">
+                <input type="button" class="btn btn-outline-warning" value='3' onclick="moveElevator(this.value)">
             </div>
         </div>
-    </footer>
+    </div>
+
+    </div>
+    <div class="fixed-bottom">
+        <div class="text-center pt-5">
+            <hr/>
+            <span>Copyright © Lyubomyr Bilyk</span>
+        </div>
+    </div>
 </div>
+
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/index.js"></script>

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
         <title>Elevator Project</title>
+        <meta name="author" content="Lyubomyr Bilyk">
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,15 +18,17 @@
             </button>
             <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="d-inline-block" id="loginSection"></div>
                         <i class="fas fa-user-circle fa-fw"></i>
                     </a>
-                    <div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Settings</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>
-                    </div>
+                    <a href="logout.php" class="nav-link d-inline">Logout</a>
+
+                    <!--<div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">-->
+                        <!--<a class="dropdown-item" href="#">Settings</a>-->
+                        <!--<div class="dropdown-divider"></div>-->
+                        <!--<a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>-->
+                    <!--</div>-->
                 </li>
             </ul>
         </nav>
@@ -65,43 +68,118 @@
                 <div class="container align-content-center">
                     <div class="row">
                         <div class="col-xl-4 col-md-6 mb-4 text-center">
-                            <div class="card border-0 shadow">
-                                <img src="img/lu.jpg" class="card-img-top" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title mb-0">Lyubomyr Bilyk</h5>
-                                    <div class="card-text text-black-50">GUI Guy</div>
+                            <div class="card card-flip h-100 shadow">
+                                <div class="card-front text-white bg-white">
+                                    <div class="card-body text-center">
+                                        <img src="img/lu.jpg" class="card-img-top" alt="">
+                                        <h5 class="card-title mb-1 text-dark">Lyubomyr Bilyk</h5>
+                                        <div class="card-text text-black-50">GUI Guy</div>
+                                    </div>
+                                </div>
+                                <div class="card-back bg-white">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Lyubomyr</h3>
+                                        <p class="card-text">Is responsible for creating the front-end and back-end software for the elevator project.</p>
+                                        <p class="card-text mt-2">Maybe add some more stuff or something.</p>
+                                        <div class="container">
+                                            <a href="https://www.linkedin.com/in/lbilyk/" target="_blank" class="btn btn-outline-secondary">LinkedIn</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-0 shadow">
-                                <img src="img/ferencz.jpg" class="card-img-top" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title mb-0">Ferencz Dominguez</h5>
-                                    <div class="card-text text-black-50">CAN Guy</div>
+                        <div class="col-xl-4 col-md-6 mb-4 text-center">
+                            <div class="card card-flip h-100 shadow">
+                                <div class="card-front text-white bg-white">
+                                    <div class="card-body text-center">
+                                        <img src="img/ferencz.jpg" class="card-img-top" alt="">
+                                        <h5 class="card-title mb-1 text-dark">Ferencz Dominguez</h5>
+                                        <div class="card-text text-black-50">CAN Guy</div>
+                                    </div>
+                                </div>
+                                <div class="card-back bg-white">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Ferencz</h3>
+                                        <p class="card-text">Is responsible for making the elevator move.</p>
+                                        <p class="card-text mt-2">Maybe add some more stuff or something.</p>
+                                        <a href="https://www.linkedin.com/in/ferencz-dominguez/" target="_blank" class="btn btn-outline-secondary">LinkedIn</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-0 shadow">
-                                <img src="img/nik.jpg" class="card-img-top" alt="">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title mb-0">Nik Kershaw</h5>
-                                    <div class="card-text text-black-50">PI Guy</div>
+                        <div class="col-xl-4 col-md-6 mb-4 text-center">
+                            <div class="card card-flip h-100 shadow">
+                                <div class="card-front text-white bg-white">
+                                    <div class="card-body text-center">
+                                        <img src="img/nik.jpg" class="card-img-top" alt="">
+                                        <h5 class="card-title mb-1 text-dark">Nik Kershaw</h5>
+                                        <div class="card-text text-black-50">PI Guy</div>
+                                    </div>
+                                </div>
+                                <div class="card-back bg-white">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Nik</h3>
+                                        <p class="card-text">Is responsible for wiring stuff up and data logging.</p>
+                                        <p class="card-text mt-2">Maybe add some more stuff or something.</p>
+                                        <a href="https://www.linkedin.com/in/nik-kershaw-5807a814a/" target="_blank" class="btn btn-outline-secondary">LinkedIn</a>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="container-fluid pt-xl-5">
+                    <header class="bg-secondary text-center py-4 mb-4">
+                        <div class="container">
+                            <h1 class="text-white font-weight-bold">The Project </h1>
+                        </div>
+                    </header>
+                    <div class="card py-4 border-0">
+                        <div class="card-text px-3 text-center">The project is to design software to effectively control
+                            an elevator. The software will take advantage of CAN bus communication to deliver
+                            instructions from button presses to move the elevator to the specified floors. The elevator
+                            should indicate which floor it’s currently on by lighting up the corresponding LEDs. As an
+                            extra feature, users should be able to control and monitor the elevator remotely by using
+                            the elevator project website. <p>For more details: <a href="projectDetails.html">Project details</a></p>
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-xl-12 col-md-6 mb-4 text-center">
+                            <div class="card shadow">
+                                    <div class="card-body text-center">
+                                        <video width="640" height="480" controls>
+                                            <source src="vid/team_intro.mp4" type="video/mp4">
+                                        </video>
+                                        <h5 class="card-title my-2 text-dark">Team Introduction</h5>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="container-fluid about-section-title">
+                <header class="bg-secondary text-center py-4 mb-4">
+                    <div class="container">
+                        <h1 class="text-white font-weight-bold">Location</h1>
+                    </div>
+                </header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 text-center">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.311431429955!2d-80.39929529816273!3d43.387088954780516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c7588297ed47b%3A0x7758b611af21ea67!2s850+Fountain+St+S%2C+Cambridge%2C+ON+N3H+0A8!5e0!3m2!1sen!2sca!4v1560199997469!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
             </div>
-            <footer class="sticky-footer">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright © Lyubomyr Bilyk</span>
-                    </div>
+                <div class="text-center pt-5">
+                    <hr/>
+                    <span>Copyright © Lyubomyr Bilyk</span>
                 </div>
-            </footer>
+            </div>
         </div>
+        <a href="#" class="back-to-top">
+            <i class="fa fa-arrow-circle-up"></i>
+        </a>
         <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="js/index.js"></script>

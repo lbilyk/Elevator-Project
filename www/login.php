@@ -10,6 +10,7 @@ $authError = filter_input(INPUT_GET, 'authError');
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Elevator Project</title>
+        <meta name="author" content="Lyubomyr Bilyk">
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,6 +36,16 @@ $authError = filter_input(INPUT_GET, 'authError');
                         <script>alert("Username or password is incorrect");</script>
                     <?php } ?>
                 </div>
+                <hr/>
+                <div class="text-center font-weight-bold">
+                    or...
+                </div>
+                <div class="text-center">
+                    <div class="pt-1 pb-3 px-5 text-center">
+                        <input type="submit" value="Request Access" class="btn btn-primary btn-block" onclick="window.location.href ='request.html'">
+                    </div>
+                </div>
+
             </div>
         </div>
     </body>

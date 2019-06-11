@@ -33,15 +33,17 @@ if($_SESSION['user'] == null || $_SESSION == '') {
     </button>
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block" id="loginSection"></div>
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-            </div>
+            <a href="logout.php" class="nav-link d-inline">Logout</a>
+
+<!--            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">-->
+<!--                <a class="dropdown-item" href="#">Settings</a>-->
+<!--                <div class="dropdown-divider"></div>-->
+<!--                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>-->
+<!--            </div>-->
         </li>
     </ul>
 </nav>
@@ -88,8 +90,13 @@ if($_SESSION['user'] == null || $_SESSION == '') {
     <!--</footer>-->
     <div class="container-fluid px-5 py-2" id="logbookContainer">
         <div>
-            <input type="date">
-            <input type="date">
+            <input id="minDate" type="date"> to <input id="maxDate" type="date">
+            <div class="pl-5 d-inline">
+                <select id="nameSelect" class="px-2"></select>
+            </div>
+            <div class="pl-5 d-inline">
+                <input class="btn btn-primary" type="button" value="Apply Filters" class="px-2" onclick="filterLogbookEntries()">
+            </div>
         </div>
         <hr>
         <div class="list-group container-fluid" id ="logbookEntries">

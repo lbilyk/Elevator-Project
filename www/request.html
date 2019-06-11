@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Lyubomyr Bilyk">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/index.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+<div class="container">
+    <div class="title text-white mt-5">
+        <h1>Request Access</h1>
+        <div class="card mx-auto my-4">
+        </div>
+    </div>
+    <div class="card bg-dark border-light">
+        <div class="card-body border-light">
+            <div class="legend-title text-white">Contact Details</div>
+            <form>
+                <div class="form-group my-2">
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">First Name:</div>
+                        </div>
+                        <div class="col-xl">
+                            <input type="text" id="firstName" name="firstName" class="form-control d-inline"
+                                   placeholder="John" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">Last Name:</div>
+                        </div>
+                        <div class="col-xl ">
+                            <input type="text" id="lastName" name="lastName" class="form-control d-inline"
+                                   placeholder="Smith" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">Email:</div>
+                        </div>
+                        <div class="col-xl">
+                            <input type="email" id="email" name="email" class="form-control d-inline"
+                                   placeholder="example@email.com" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">Phone:</div>
+                        </div>
+                        <div class="col-xl">
+                            <input type="email" id="phone" name="phone" class="form-control d-inline"
+                                   placeholder="519-123-4568" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">Website:</div>
+                        </div>
+                        <div class="col-xl">
+                            <input type="text" id="website" name="website" class="form-control d-inline"
+                                   placeholder="www.example.com" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">Birth Date:</div>
+                        </div>
+                        <div class="col-xl">
+                            <input type="date" id="birthDate" name="birthDate" class="form-control d-inline"
+                                   placeholder="John" autofocus="autofocus">
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-sm-2">
+                            <div class="text-white form-text">Request Type:</div>
+                        </div>
+                        <div class="col-xl text-white">
+                            <label class="radio-inline pl-2 pr-4"><input class="" type="radio" name="requestType">Faculty</label>
+                            <label class="radio-inline"><input type="radio" name="requestType">Student</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card bg-dark text-white my-4 border-white">
+        <div class="card-body">
+
+            <div class="container my-4">
+                <div id="aboutTitle" class="text-white">Tell us a bit about yourself</div>
+                <div class="list-group container-fluid my-4">
+                    <div class="form-group d-flex w-100 justify-content-between">
+                <textarea class="form-control z-depth-1" id="about" rows="5" maxlength="200"
+                          placeholder="Please enter your comments here..."></textarea>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="btn btn-primary" id="submitButton">Submit Request</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

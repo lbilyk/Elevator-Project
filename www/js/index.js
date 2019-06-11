@@ -2,6 +2,7 @@ const SERVER_REQUESTS = 'server/server_requests.php';
 const LU = "Lyubomyr Bilyk";
 const FERENCZ = "Ferencz Dominguez";
 const NIK = "Nik Kershaw";
+let currentFloor = 1;
 
 $(function () {
     $('#sidebarToggle').on('click', function (event) {
@@ -61,6 +62,49 @@ function setProfileImage() {
             userImage = '/img/nik.jpg';
             break;
     }
-
-
 }
+
+function moveElevator(floor) {
+
+    let moveHeight = floor * 200;
+    let animation = Math.abs(currentFloor - floor) * 1000;
+    if (floor == currentFloor) {
+        return;
+    }
+
+    $("#doorRight").removeClass("open-right");
+    $("#doorLeft").removeClass("open-left");
+
+    setTimeout(function(){
+        $("#elevatorContainer").css("transition","all " + animation + "ms linear");
+        $("#elevatorContainer").css("bottom",moveHeight - 128 +"px");
+        currentFloor = floor;
+        setTimeout(function(){
+
+            $("#doorRight").addClass("open-right");
+            $("#doorLeft").addClass("open-left");
+
+        },animation);
+        },300);
+}
+
+$(window).scroll(function() {
+    var scrollAmount = $(this).scrollTop();
+
+    if (scrollAmount > 50) {
+        $('.back-to-top').fadeIn();
+    }
+    else {
+        $('.back-to-top').fadeOut();
+    }
+    if(scrollAmount > 200) {
+        $('.back-to-top').css('visibility','visible');
+    }
+});
+
+$('.back-to-top').click(function () {
+    $("html, body").animate({
+        scrollTop: 0
+    }, 500);
+    return false;
+});

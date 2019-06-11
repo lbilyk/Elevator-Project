@@ -3,7 +3,9 @@ $(function() {
     let data = "action=getLogbookData";
     let dataType = 'text';
     let response = callToServer(data,dataType);
+    localStorage.setItem('logbookEntries',response);
     createLogbookEntries(response);
+    addFilterOptions(response);
 });
 
 function createLogbookEntries(entriesJSON) {
@@ -12,6 +14,7 @@ function createLogbookEntries(entriesJSON) {
     console.log(entries);
 
     for(let i = 0; i < entries.length; i++) {
+
         let user = entries[i].username;
         let date = entries[i].date;
         let entry = entries[i].entry;
@@ -45,4 +48,62 @@ function addLogbookEntry(entryText) {
     let dataType = "text";
     callToServer(data,dataType);
     location.reload();
+}
+
+function addFilterOptions(entriesJSON) {
+
+    const DATETIME_TO_DATE = 10;
+    let dates = [];
+    let names = [];
+    let entries = JSON.parse(entriesJSON);
+    for(let i = 0; i < entries.length; i++) {
+        dates[i] = entries[i].date;
+        names[i] = entries[i].username;
+    }
+    dates.sort((a,b)=>a-b);
+    names.sort((a,b)=>a-b);
+
+    let minDate = dates[0];
+    let maxDate = dates.splice(-1)[0];
+    let uniqueNames = names.filter((item,index)=> names.indexOf(item) === index);
+
+    $('#minDate').prop('value',minDate.slice(0,DATETIME_TO_DATE));
+    $('#maxDate').prop('value',maxDate.slice(0,DATETIME_TO_DATE));
+
+    $('#nameSelect').append('<option selected>Filter by Name</option>');
+    $.each(uniqueNames,function(key,value) {
+        $('#nameSelect').append($('<option></option>').attr("value",value).text(value));
+    })
+}
+
+function filterLogbookEntries() {
+
+    let minDate = $('#minDate').prop('value');
+    let maxDate = $('#maxDate').prop('value');
+    let name = $('#nameSelect option:selected').text();
+    let entriesJSON = localStorage.getItem('logbookEntries');
+    let entries = JSON.parse(entriesJSON);
+    let filteredEntries = entries;
+    const filterNameDefault = "Filter by Name";
+
+    $('#logbookEntries').empty();
+
+    let filterMinDate = new Date(minDate);
+    let filterMaxDate = new Date(maxDate);
+
+
+    for(let i = 0; i < entries.length; i++) {
+        let date = new Date(entries[i].date);
+        if((date < filterMinDate - 1) || (date > filterMaxDate + 1) || (name !== entries[i].username && name !== filterNameDefault)) {
+            filteredEntries[i] = null;
+        }
+    }
+    let filter = filteredEntries.filter(Boolean);
+    createLogbookEntries(JSON.stringify(filter));
+}
+
+function addLogbookEntry(entries) {
+
+    let entriesKJSON = JSON.parse(entries);
+
 }
