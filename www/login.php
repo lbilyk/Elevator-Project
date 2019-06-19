@@ -23,7 +23,7 @@ $authError = filter_input(INPUT_GET, 'authError');
                 <div class="card-body">
                     <form action="authenticate.php" method="POST">
                         <div class="form-group my-2">
-                            <input type="email" id="userEmail" name="username" class="form-control" placeholder="Email Address"
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username"
                                    required="required" autofocus="autofocus">
                         </div>
                         <div class="form-group">
