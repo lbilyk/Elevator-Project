@@ -18,8 +18,8 @@
     </button>
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <li class="nav-item dropdown no-arrow">
+            <a class=" nav-link dropdown-toggle d-inline-block px-3" id="datetime"></a>
             <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="d-inline-block px-3" id="datetime"></div>
                 <div class="d-inline-block" id="loginSection"></div>
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
@@ -76,16 +76,17 @@
     <div class="card bg-dark" id="elevatorControls">
         <div class="card-text text-white text-center">Go To Floor</div>
         <div class="card-body">
-            <div class="form-group text-left" >
-                <input type="button" class="btn btn-outline-warning" value='1' onclick="moveElevator(this.value)">
-                <input type="button" class="btn btn-outline-warning" value='2' onclick="moveElevator(this.value)">
-                <input type="button" class="btn btn-outline-warning" value='3' onclick="moveElevator(this.value)">
+            <div class="form-group text-center" >
+                <input type="button" class="btn btn-outline-warning rounded-circle d-block my-2 " value='3' onclick="moveElevator(this.value)">
+                <input type="button" class="btn btn-outline-warning rounded-circle d-block my-2" value='2' onclick="moveElevator(this.value)">
+                <input type="button" class="btn btn-outline-warning rounded-circle d-block my-2" value='1' onclick="moveElevator(this.value)">
             </div>
         </div>
     </div>
 
     </div>
     <div class="fixed-bottom">
+        <div class="text-center pt-5">
         <div class="text-center pt-5">
             <hr/>
             <span>Copyright © Lyubomyr Bilyk</span>

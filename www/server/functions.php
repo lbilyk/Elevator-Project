@@ -30,3 +30,14 @@ function addLogbookEntry($entry, $user, $date) {
     $result = $statement->execute();
     return $result;
 }
+
+function updateFloor($floor) {
+
+    global $mysqli;
+    $query = "UPDATE elevatorNetwork SET currentFloor = ? WHERE nodeID = 1";
+    $statement = $mysqli->prepare($query);
+    $statement->bind_param("i",$floor);
+    $result = $statement->execute();
+    return $result;
+
+}

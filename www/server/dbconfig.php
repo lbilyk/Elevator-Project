@@ -1,7 +1,7 @@
 <?php
 $dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "Shunts5";
+$dbuser = "ese";
+$dbpass = "ese";
 $dbname = "elevator";
 
 try {

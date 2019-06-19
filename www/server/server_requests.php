@@ -1,5 +1,5 @@
 <?php
-require_once '..\server\index.php';
+require_once '..\server\functions.php';
 require_once '..\server\dbconfig.php';
 
 $action = filter_input(INPUT_POST, 'action');
@@ -13,6 +13,10 @@ switch ($action) {
         $user = filter_input(INPUT_POST,'user');
         $date = getCurrentDate();
         echo addLogbookEntry($entry, $user, $date);
+        break;
+    case 'updateFloor':
+        $floor = filter_input(INPUT_POST,'floor');
+        echo updateFloor($floor);
         break;
     default:
         echo null;

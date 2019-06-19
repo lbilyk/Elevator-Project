@@ -397,8 +397,10 @@ flip card
 
 #elevatorControls{
     position: absolute;
+    text-align: center;
     bottom: 128px;
     left: 256px;
+    width: 128px;
 }
 
 .back-to-top{
@@ -407,4 +409,11 @@ flip card
     right: 64px;
     display: inline;
     visibility: hidden;
+}
+
+.btn-outline-warning {
+    position: relative;
+    left: 12px;
+    width: 64px;
+    height: 64px;
 }

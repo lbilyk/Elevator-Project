@@ -3,10 +3,11 @@ const LU = "Lyubomyr Bilyk";
 const FERENCZ = "Ferencz Dominguez";
 const NIK = "Nik Kershaw";
 let currentFloor = 1;
+let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 $(function () {
-    let date = new Date();
-    $('#datetime').html(date.toLocaleString());
+    updateTime();
+    setInterval(updateTime,1000);
     $('#sidebarToggle').on('click', function (event) {
         event.preventDefault();
         $("body").toggleClass('sidebar-toggled');
@@ -15,6 +16,13 @@ $(function () {
     createLoginSectionDetails();
 });
 
+function updateTime() {
+    let date = new Date();
+    let time =('0'  + date.getHours()).slice(-2)+':'+ ('0'  + date.getMinutes()).slice(-2)+':'+('0' + date.getSeconds()).slice(-2);
+    let day = (months[date.getMonth()] + ' ' + ('0'  + date.getDate()).slice(-2) + ' ' + date.getFullYear())
+    let today = time + ' - ' + day;
+    $('#datetime').html(today.toLocaleString());
+}
 function callToServer(data,dataType ) {
 
     var response;
@@ -73,6 +81,11 @@ function moveElevator(floor) {
     if (floor == currentFloor) {
         return;
     }
+
+    let data = "action=updateFloor&floor=" + floor;
+    let dataType = 'text';
+   let result = callToServer(data,dataType);
+   console.log(result);
 
     $("#doorRight").removeClass("open-right");
     $("#doorLeft").removeClass("open-left");

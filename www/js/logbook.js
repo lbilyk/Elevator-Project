@@ -102,8 +102,9 @@ function filterLogbookEntries() {
     createLogbookEntries(JSON.stringify(filter));
 }
 
-function addLogbookEntry(entries) {
-
-    let entriesKJSON = JSON.parse(entries);
-
-}
+// function addLogbookEntry(entries) {
+//
+//     alert(entries);
+//     let entriesKJSON = JSON.parse(entries);
+//
+// }
