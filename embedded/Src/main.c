@@ -34,25 +34,25 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define NODE  4
+#define NODE  1
 
 #if NODE == 1					// First floor
-#define ID 					0x0100
+#define ID 					0x0201
 #define MY_FLOOR 			1
 #define GO_TO_MY_FLOOR		0X05
 
 #elif NODE == 2					// Second floor
-#define ID 					0x0100
+#define ID 					0x0202
 #define MY_FLOOR			2
 #define GO_TO_MY_FLOOR		0x06
 
 #elif NODE == 3					// Third floor
-#define ID					0x0100
+#define ID					0x0203
 #define MY_FLOOR			3
 #define GO_TO_MY_FLOOR		0x07
 
 #elif NODE == 4 				// Inside elevator
-#define ID					0x0100
+#define ID					0x0200
 #define MY_FLOOR			4
 #endif
 
@@ -169,18 +169,14 @@ int main(void)
 		 }
 	  }
 
-//	  if (currentFloor == GO_TO_MY_FLOOR){
-//		 lightOffSwitchLED();
-//	  }
-
 	  lightOffSwitchLED();
 
-//	  Transmit. This uses blue button from board, but it will change to 1 GPIO input from elevator
+	  // Transmit. This uses blue button from board, but it will change to 1 GPIO input from elevator
 
 	  if (BUTTON != 0) {
 
 		 HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
-		 HAL_Delay(500);
+		 HAL_Delay(300);
 		 TxData[0] = msg;
 
 		 if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK){
@@ -443,9 +439,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 
 		HAL_GPIO_WritePin(GPIOC,ledSwitchFloor1_Pin, GPIO_PIN_SET);	// Light up switch led
 
-	}else {
-
-	}
+	}else {}
 
 }
 
@@ -473,6 +467,9 @@ void lightFloorLED(char led){
 	case FLOOR_3:	// Light up LED for floor 3
 		HAL_GPIO_WritePin(GPIOB,ledCurrentFloor1_Pin | ledCurrentFloor2_Pin , GPIO_PIN_RESET);	// Reset LED
 		HAL_GPIO_WritePin(GPIOB,ledCurrentFloor3_Pin, GPIO_PIN_SET);
+		break;
+
+	default:
 		break;
 
 	}
