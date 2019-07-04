@@ -1,6 +1,6 @@
 <?php
-require_once '..\server\server_requests.php';
-require_once '..\server\dbconfig.php';
+require_once '../server/server_requests.php';
+require_once '../server/dbconfig.php';
 
 function getCurrentDate() {
 

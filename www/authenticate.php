@@ -1,6 +1,5 @@
 <?php
-require_once 'server\dbconfig.php';
-//require_once  'login.php';
+require_once 'server/dbconfig.php';
 
 session_start();
 $authError = false;

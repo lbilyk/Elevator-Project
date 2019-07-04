@@ -1,6 +1,6 @@
 <?php
-require_once '..\server\functions.php';
-require_once '..\server\dbconfig.php';
+require_once '../server/functions.php';
+require_once '../server/dbconfig.php';
 
 $action = filter_input(INPUT_POST, 'action');
 
