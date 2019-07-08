@@ -1,3 +1,11 @@
+<?php
+session_start();
+?>
+    <script>
+        let user = '<?php echo $_SESSION['user']; ?>'
+        localStorage.setItem('sessionUser',user);
+    </script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
