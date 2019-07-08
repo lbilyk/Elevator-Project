@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <title>Elevator Project</title>
     <meta name="author" content="Lyubomyr Bilyk">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -14,36 +13,41 @@
 <body id="page-top">
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="index.php">Elevator Project</a>
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" href="#" id="sidebarToggle">
         <i class="fas fa-bars"></i>
     </button>
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <li class="nav-item dropdown no-arrow">
             <a class=" nav-link dropdown-toggle d-inline-block px-3" id="datetime"></a>
-            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block" id="loginSection"></div>
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <a href="logout.php" class="nav-link d-inline">Logout</a>
+
+            <!--<div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">-->
+            <!--<a class="dropdown-item" href="#">Settings</a>-->
+            <!--<div class="dropdown-divider"></div>-->
+            <!--<a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>-->
+            <!--</div>-->
         </li>
     </ul>
 </nav>
 <div id="wrapper">
     <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
+        <li class="nav-item ">
             <a class="nav-link" href="index.php">
                 <i class="fas fa-fw fa-home"></i>
                 <span>Home</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
             <a class="nav-link" href="project.html">
                 <i class="fas fa-fw fa-project-diagram"></i>
                 <span>Project</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ">
             <a class="nav-link" href="logbook.php">
                 <i class="fas fa-fw fa-book"></i>
                 <span>Log Book</span>
@@ -55,48 +59,21 @@
                 <span>About</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="log.php">
                 <i class="fas fa-fw fa-scroll"></i>
                 <span>Log</span>
             </a>
         </li>
     </ul>
-    <div id="buildingContainer" class="container pt-5">
-        <div id="elevatorBuilding">
-            <div id="elevatorShaft">
-                <div id="elevatorContainer">
-                    <div id="elevator">
-                        <div class="door open-left" id="doorLeft"></div>
-                        <div class="door open-right" id="doorRight"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card bg-dark" id="elevatorControls">
-        <div class="card-text text-white text-center">Go To Floor</div>
-        <div class="card-body text-center">
-            <div class="form-group text-center justify-content-center">
-                <input type="button" class="btn elevator-button btn-outline-warning rounded-circle d-block my-2 mr-4 " value='3'
-                       onclick="moveElevator(this.value)">
-                <input type="button" class="btn elevator-button btn-outline-warning rounded-circle d-block my-2 mr-4" value='2'
-                       onclick="moveElevator(this.value)">
-                <input type="button" class="btn elevator-button btn-outline-warning rounded-circle d-block my-2 mr-4" value='1'
-                       onclick="moveElevator(this.value)">
-            </div>
-        </div>
-    </div>
-
+    <h1>
+        Elevator Log
+    </h1>
 </div>
-<!--<div class="fixed-bottom">-->
-<!--    <div class="text-center pt-5">-->
-<!--        <div class="text-center pt-5">-->
-<!--            <hr/>-->
-<!--            <span>Copyright © Lyubomyr Bilyk</span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
+<a href="#" class="back-to-top">
+    <i class="fa fa-arrow-circle-up"></i>
+</a>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/index.js"></script>

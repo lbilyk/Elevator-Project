@@ -74,6 +74,12 @@ if($_SESSION['user'] == null || $_SESSION == '') {
                 <span>About</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="log.php">
+                <i class="fas fa-fw fa-scroll"></i>
+                <span>About</span>
+            </a>
+        </li>
     </ul>
     <!--<select class="browser-default custom-select">-->
     <!--<option selected>Select a user</option>-->

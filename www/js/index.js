@@ -14,6 +14,7 @@ $(function () {
         $(".sidebar").toggleClass('toggled');
     });
     createLoginSectionDetails();
+
 });
 
 function updateTime() {
@@ -77,7 +78,7 @@ function setProfileImage() {
 function moveElevator(floor) {
 
     let moveHeight = floor * 200;
-    let animation = Math.abs(currentFloor - floor) * 1000;
+    let animation = 2000 / (Math.abs(currentFloor - floor));
     if (floor == currentFloor) {
         return;
     }
@@ -85,7 +86,6 @@ function moveElevator(floor) {
     let data = "action=updateFloor&floor=" + floor;
     let dataType = 'text';
    let result = callToServer(data,dataType);
-   console.log(result);
 
     $("#doorRight").removeClass("open-right");
     $("#doorLeft").removeClass("open-left");

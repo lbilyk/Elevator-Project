@@ -185,7 +185,6 @@
 
     .sidebar .nav-item .nav-link {
         display: block;
-        width: 100%;
         text-align: left;
         padding: 1rem;
         width: 225px;
@@ -249,9 +248,6 @@ footer.sticky-footer {
     display: -ms-flexbox;
     display: flex;
     position: absolute;
-    /*right: 0;*/
-    /*top: 100%;*/
-    /*bottom: 0;*/
     width: calc(100% - 90px);
     height: 80px;
     background-color: #e9ecef;
@@ -279,12 +275,6 @@ body.sidebar-toggled footer.sticky-footer {
     }
 }
 
-/*#loginButton {*/
-/*color: white;*/
-/*background-color: rgba(0,0,0,0);*/
-/**/
-/*}*/
-
 
 .about-section-title {
     width: 75%;
@@ -292,10 +282,6 @@ body.sidebar-toggled footer.sticky-footer {
     padding-top: 128px;
 }
 
-
-/*
-flip card
-*/
 .card-flip > div {
     backface-visibility: hidden;
     transition: transform 400ms;
@@ -321,25 +307,23 @@ flip card
     transform: rotateY(0deg);
 }
 
-#elevatorBuilding{
+#elevatorBuilding {
     background-color: #6a8db3;
-    margin-left: 66%;
-    height:600px;
-    width: 33%;
+    height: 600px;
     position: relative;
     z-index: 1991;
 }
-#elevatorShaft{
+
+#elevatorShaft {
     background-color: #002752;
-    width: 33%;
     position: relative;
     /*top: 20px;*/
     height: 600px;
     z-index: 10000000;
 
     /*padding-top: 100px;*/
-    margin-left: 33%;
 }
+
 #elevator {
     background-color: #343a40;
     width: 100%;
@@ -356,31 +340,31 @@ flip card
     position: absolute;
     z-index: 1;
 }
+
 #doorLeft {
-     left:0;
+    left: 0;
     position: absolute;
     z-index: 1;
- }
+}
+
 #doorRight {
-     right:0;
+    right: 0;
     position: absolute;
     z-index: 1;
 }
 
 .open-right {
 
-    right:-50% !important;
+    right: -50% !important;
     position: absolute;
     z-index: 1;
-
 }
+
 .open-left {
 
-    left:-50% !important;
+    left: -50% !important;
     position: absolute;
     z-index: 1;
-
-
 }
 
 #elevatorContainer {
@@ -388,6 +372,7 @@ flip card
     width: 100%;
     bottom: 64px;
 }
+
 #elevatorBase {
     background-color: #343a40;
     position: absolute;
@@ -395,15 +380,72 @@ flip card
     height: 128px;
 }
 
-#elevatorControls{
-    position: absolute;
+#elevatorControls {
+    position: relative;
     text-align: center;
-    bottom: 128px;
-    left: 256px;
-    width: 128px;
+    margin-left: 32px;
 }
 
-.back-to-top{
+#buildingContainer {
+    position: absolute;
+    right: 0px;
+}
+
+.elevator-button{
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    #buildingContainer {
+        top: 32px;
+    }
+    #elevatorBuilding{
+        width: 33%;
+        margin-left: 66%;
+    }
+    #elevatorShaft{
+        width: 33%;
+        margin-left: 33%;
+    }
+    .btn-outline-warning {
+        width: 100%;
+    }
+    .elevator-button {
+        width: 64px !important;
+        height: 64px !important;
+        font-size: 12pt !important;
+    }
+    #elevatorControls{
+        height: 280px;
+        margin-top: calc(30vh);
+    }
+
+}
+@media (max-width: 768px) {
+    #buildingContainer {
+        top: 64px;
+        height: 860px;
+    }
+    #elevatorBuilding{
+        width: 50%;
+        left: 50%;
+    }
+    #elevatorShaft{
+        width: 33%;
+        left: 33%;
+    }
+    .elevator-button {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 6pt !important;
+    }
+
+    #elevatorControls{
+        height: 180px;
+        margin-top: calc(60vh);
+    }
+}
+.back-to-top {
     position: fixed;
     bottom: 64px;
     right: 64px;

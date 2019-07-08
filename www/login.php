@@ -45,8 +45,8 @@ $authError = filter_input(INPUT_GET, 'authError');
                         <input type="submit" value="Request Access" class="btn btn-primary btn-block" onclick="window.location.href ='request.html'">
                     </div>
                 </div>
-
             </div>
         </div>
+       <script>localStorage.removeItem('sessionUser')</script>
     </body>
 </html>
