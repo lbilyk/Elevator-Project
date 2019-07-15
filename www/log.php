@@ -65,14 +65,7 @@
         <h2 class="modal-title">
             Elevator Activity Log
         </h2>
-    <div class="list-group container-fluid mt-4" id ="logData">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                    <small class="text-muted ">TimeStamp: 12321321</small>
-                </div>
-                <p class="mb-1">Received command to move to floor 2</p>
-            </a>
-        </div>
+    <div class="list-group container-fluid mt-4" id ="logData"></div>
     </div>
 </div>
 

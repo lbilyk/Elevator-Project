@@ -1,7 +1,7 @@
 
 $(function () {
     setInterval(getLogDataFromServer, 1000);
-}
+});
 
 function getLogDataFromServer() {
 
