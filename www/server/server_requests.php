@@ -21,6 +21,9 @@ switch ($action) {
     case 'getLogData':
         echo getLogData();
         break;
+    case 'getCurrentFloor':
+        echo getCurrentFloor();
+        break;
     default:
         echo null;
         break;

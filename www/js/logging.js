@@ -6,9 +6,9 @@ $(function () {
 function getLogDataFromServer() {
 
     let data = 'action=getLogData';
-    let dataType = 'json';
+    let dataType = 'text';
     let response = callToServer(data,dataType);
-    displayLogData(response);
+    displayLogData(JSON.parse(response));
 }
 
 function displayLogData(data) {

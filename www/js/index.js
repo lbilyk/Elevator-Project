@@ -14,6 +14,7 @@ $(function () {
         $(".sidebar").toggleClass('toggled');
     });
     createLoginSectionDetails();
+    getCurrentFloor();
 
 });
 
@@ -123,3 +124,12 @@ $('.back-to-top').click(function () {
     }, 500);
     return false;
 });
+
+function getCurrentFloor() {
+
+    let data = 'action=getCurrentFloor';
+    let dataType = 'text';
+    let response = callToServer(data,dataType);
+    console.log("Current Floor: " + response);
+    moveElevator(response);
+}

@@ -50,7 +50,17 @@ function getLogData() {
     $statement->execute();
     $result = $statement->get_result();
     while($row = mysqli_fetch_assoc($result)) {
-        $entries[] = $row;
+        $data[] = $row;
     }
     return json_encode($data);
+}
+
+function getCurrentFloor() {
+
+    global $mysqli;
+    $query = "SELECT currentFloor FROM elevatorNetwork WHERE nodeID = 1";
+    $statement = $mysqli->prepare($query);
+    $result = $statement->execute();
+    return $result;
+
 }

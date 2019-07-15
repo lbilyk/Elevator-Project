@@ -461,6 +461,6 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 #logDataBox {
-
-
+    height: 60vh;
+    overflow-y: scroll;
 }
