@@ -101,10 +101,3 @@ function filterLogbookEntries() {
     let filter = filteredEntries.filter(Boolean);
     createLogbookEntries(JSON.stringify(filter));
 }
-
-// function addLogbookEntry(entries) {
-//
-//     alert(entries);
-//     let entriesKJSON = JSON.parse(entries);
-//
-// }

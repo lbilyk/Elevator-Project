@@ -24,12 +24,6 @@
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <a href="logout.php" class="nav-link d-inline">Logout</a>
-
-            <!--<div aria-labelledby="userDropdown" class="dropdown-menu dropdown-menu-right">-->
-            <!--<a class="dropdown-item" href="#">Settings</a>-->
-            <!--<div class="dropdown-divider"></div>-->
-            <!--<a class="dropdown-item" data-target="#logoutModal" data-toggle="modal" href="#">Logout</a>-->
-            <!--</div>-->
         </li>
     </ul>
 </nav>
@@ -66,9 +60,20 @@
             </a>
         </li>
     </ul>
-    <h1>
-        Elevator Log
-    </h1>
+
+    <div class="container mt-4" id="logDataBox">
+        <h2 class="modal-title">
+            Elevator Activity Log
+        </h2>
+    <div class="list-group container-fluid mt-4" id ="logData">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <small class="text-muted ">TimeStamp: 12321321</small>
+                </div>
+                <p class="mb-1">Received command to move to floor 2</p>
+            </a>
+        </div>
+    </div>
 </div>
 
 <a href="#" class="back-to-top">
@@ -77,5 +82,6 @@
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/logging.js"></script>
 </body>
 </html>

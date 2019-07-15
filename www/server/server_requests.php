@@ -18,6 +18,9 @@ switch ($action) {
         $floor = filter_input(INPUT_POST,'floor');
         echo updateFloor($floor);
         break;
+    case 'getLogData':
+        echo getLogData();
+        break;
     default:
         echo null;
         break;
