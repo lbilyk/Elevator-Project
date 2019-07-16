@@ -34,26 +34,21 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define NODE  1
+/* Change the NODE number depending on the floor node */
+#define NODE  2
 
 #if NODE == 1					// First floor
 #define ID 					0x0201
-#define MY_FLOOR 			1
-#define GO_TO_MY_FLOOR		0X05
 
 #elif NODE == 2					// Second floor
 #define ID 					0x0202
-#define MY_FLOOR			2
-#define GO_TO_MY_FLOOR		0x06
 
 #elif NODE == 3					// Third floor
 #define ID					0x0203
-#define MY_FLOOR			3
-#define GO_TO_MY_FLOOR		0x07
 
 #elif NODE == 4 				// Inside elevator
 #define ID					0x0200
-#define MY_FLOOR			4
+
 #endif
 
 #define FLOOR_1				0x05
@@ -83,11 +78,10 @@ uint8_t               TxData[8];
 uint8_t               RxData[8];
 uint32_t              TxMailbox;
 
-uint8_t msg = GO_TO_MY_FLOOR;			// Message from node
+uint8_t msg = FLOOR_1;					// Message from node
 uint8_t	BUTTON = NO_BUTTON_PRESSED;		// Button pressed flag changed in interrupt
 
 uint8_t currentFloor = 0;
-uint8_t futureFloor = 0;
 
 /* USER CODE END PV */
 
@@ -156,7 +150,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 
-	// Light LED depending of current floor
+	  /* Light LED depending of current floor */
 	  if ((RxData[0] != 0) && (RxData[0] != 0x01)){
 		 receivedMsg = RxData[0];
 
@@ -171,8 +165,9 @@ int main(void)
 
 	  lightOffSwitchLED();
 
-	  // Transmit. This uses blue button from board, but it will change to 1 GPIO input from elevator
+	  // Transmit.
 
+	  /* Transmit floor message. Floor selected on interrupt */
 	  if (BUTTON != 0) {
 
 		 HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
@@ -419,27 +414,27 @@ static void MX_GPIO_Init(void)
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 
+	/* Depending on GPIO activated */
 	if(GPIO_Pin == bThirdFloor_Pin){
 		BUTTON = BUTTON_PRESSED;
 		msg = FLOOR_3;
 
+		/* Light up switch LED*/
 		HAL_GPIO_WritePin(GPIOC,ledSwitchFloor3_Pin, GPIO_PIN_SET);	// Light up switch led
 
-	}
-	else if(GPIO_Pin == bSecondFloor_Pin){
+	}else if(GPIO_Pin == bSecondFloor_Pin){
 		BUTTON = BUTTON_PRESSED;
 		msg = FLOOR_2;
 
 		HAL_GPIO_WritePin(GPIOC,ledSwitchFloor2_Pin, GPIO_PIN_SET);	// Light up switch led
 
-	}
-	else if(GPIO_Pin == bFirstFloor_Pin){
+	}else if(GPIO_Pin == bFirstFloor_Pin){
 		BUTTON = BUTTON_PRESSED;
 		msg = FLOOR_1;
 
 		HAL_GPIO_WritePin(GPIOC,ledSwitchFloor1_Pin, GPIO_PIN_SET);	// Light up switch led
 
-	}else {}
+	}else {}	/* Do nothing */
 
 }
 
@@ -452,6 +447,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 
 void lightFloorLED(char led){
 
+	/* Switch off and on floor LEDs*/
 	switch (led){
 
 	case FLOOR_1:	// Light up LED for floor 1
@@ -477,6 +473,7 @@ void lightFloorLED(char led){
 
 void lightOffSwitchLED(){
 
+	/* When elevator arrives to floor turn of switch LED */
 	switch (currentFloor){
 
 	case FLOOR_1:	// Light up LED for floor 1
