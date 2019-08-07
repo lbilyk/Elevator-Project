@@ -13,20 +13,13 @@ using namespace std;
 /* Globals */
 list<int> floorQueue;
 int nextFloor = 0;
+bool requested = false;
 
 // ******************************************************************
 
 int main() {
 
-    int choice;
-    int ID;
-    int data;
-    int numRx;
-    int floorNumber = 1, floorNumberPhys = 4, req_floor = 1;
-
-	bool requested = false;
-
-    system("@cls||clear");
+	system("@cls||clear");
 
 	/* Init queue */
 	initQueue();
@@ -34,63 +27,88 @@ int main() {
 	/* Init PCAN */
 	initPcan();
 
-    printf("\nNow listening to commands from the website or physical buttons - press ctrl-z to cancel\n");
-    // Synchronize elevator db and CAN (start at 1st floor)
-    pcanTx(ID_SC_TO_EC, GO_TO_FLOOR1);
-    db_setFloorNum(1);
-    db_setReqNum(1);
+	printf("\nNow listening to commands from the website or physical buttons - press ctrl-z to cancel\n");
+	// Synchronize elevator db and CAN (start at 1st floor)
+	pcanTx(ID_SC_TO_EC, GO_TO_FLOOR1);
+	db_setFloorNum(1);
+	db_setReqNum(1);
 
-    while (1) {
-
-        // Physical hardware checking
-        floorNumberPhys = pcanCheck(floorNumber);
-
-        if (floorNumberPhys != 4)
-        {                                                                     // check for floor num change
-            printf("Physical button (%d) was pressed...\n",floorNumberPhys);
-            db_setReqNum(floorNumberPhys);
-			db_logUpdate(0, 1);
-
-        }
-
-		/* Check if there is requested floor on DB */
-		req_floor = db_getReqNum();
-
-		if (!floorQueue.empty()) {
-			if (pcanStatus() == nextFloor) {
-				requested = false;
-
-				nextFloor = 0;
-
-				if (!floorQueue.empty()) {
-					floorQueue.pop_front();
-				}
-			}
-		}
-
-		if (req_floor != 4) {
-
-			queueNextFloor(req_floor);
-
-			if (requested == false) {
-				/* Call next floor */
-				nextFloor = getNextFloor();
-
-				printf("moving now to floor %d\n", nextFloor);
-				pcanTx(ID_SC_TO_EC, HexFromFloor(nextFloor));                    // change floor number in elevator - send command over CAN
-
-				db_logUpdate(nextFloor, 0);
-
-				requested = true;
-			}
-		}
-
-		sleep(0.1);
-		
-    }
+	elevatorLogic();
 
 	return (0);
 }
+
+void elevatorLogic() {
+
+	while (1) {
+		// Physical hardware checking
+		processPhysicalButton();
+
+		/* Check requested floor */
+		processRequestedFloor();
+
+		sleep(0.1);
+	}
+
+}
+
+void processPhysicalButton() {
+
+	int floorNumber = 1, floorNumberPhys = 4;
+
+	floorNumberPhys = pcanCheck(floorNumber);
+
+	if (floorNumberPhys != 4)
+	{                                                                     // check for floor num change
+		printf("Physical button (%d) was pressed...\n", floorNumberPhys);
+		db_setReqNum(floorNumberPhys);
+		db_logUpdate(0, 1);
+	}
+}
+
+void processRequestedFloor() {
+	int req_floor = 1;
+
+	/* Check if there is requested floor on DB */
+	req_floor = db_getReqNum();
+	//eraseReqFloor();
+
+	if (!floorQueue.empty()) {
+		if (pcanStatus() == getNextFloor()) {	/* Dont enter until elevator reaches the floor */
+			requested = false;
+
+			nextFloor = 0;
+
+			if (!floorQueue.empty()) {
+				floorQueue.pop_front();
+
+				if (floorQueue.empty()) {
+					eraseReqFloor();	/* Clean requested floors*/
+					req_floor = 4;	/* After queue is empty clean the req_floor so it does not request the value indefinitvely */
+				}
+			}
+		}
+	}
+
+	if (req_floor != 4) {
+
+		queueNextFloor(req_floor);
+
+		if (requested == false) {
+			/* Call next floor */
+			nextFloor = getNextFloor();
+
+			printf("moving now to floor %d\n", nextFloor);
+			pcanTx(ID_SC_TO_EC, HexFromFloor(nextFloor));                    // change floor number in elevator - send command over CAN
+
+			db_logUpdate(nextFloor, 0);
+
+			requested = true;
+		}
+	}
+
+}
+
 
 int getNextFloor() {
 
@@ -99,7 +117,7 @@ int getNextFloor() {
 
 		return nextFloor;
 	}
-	
+
 	/* Keep same floor as before if queue is empty else will trigger error */
 	return nextFloor;
 }
@@ -138,4 +156,4 @@ void initQueue() {
 
 
 
-	
+

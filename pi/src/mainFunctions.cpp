@@ -74,7 +74,7 @@ int chooseID(){
 
 		} else {
 			printf("\nPLEASE SELECT FROM CHOICES 1-6 ONLY!\n\n");
-			sleep(3);
+			//sleep(3);
 		}
 
 	}
@@ -111,7 +111,7 @@ int chooseMsg(){
 
 		} else {
 			printf("PLEASE SELECT FROM CHOICES 1-3 ONLY!\n\n");
-			sleep(3);
+			//sleep(3);
 		}
 	}
 }

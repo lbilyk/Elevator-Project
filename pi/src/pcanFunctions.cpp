@@ -39,7 +39,7 @@ int pcanTx(int id, int data){
 	//sleep(0.1);  
 	status = CAN_Write(h2, &Txmsg);
 
-	printf(" ");
+	printf("\n"); // Segmentation error if there is no printf
 }
 
 int pcanRx(int num_msgs){
