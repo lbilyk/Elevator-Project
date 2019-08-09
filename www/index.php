@@ -21,6 +21,7 @@ session_start();
     <link href="css/index.css" rel="stylesheet">
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/index.css" rel="stylesheet">
     <script type="text/javascript">
         $(document).on("click", ".navbar-right .dropdown-menu", function(e){
             e.stopPropagation();

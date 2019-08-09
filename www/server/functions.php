@@ -44,7 +44,7 @@ function updateFloor($floor) {
 function getLogData() {
 
     global $mysqli;
-    $query = "SELECT * FROM Command_Log ORDER BY Timestamp LIMIT 100";
+    $query = "SELECT * FROM Command_Log ORDER BY Timestamp DESC LIMIT 100";
     $data = array();
     $statement = $mysqli->prepare($query);
     $statement->execute();
