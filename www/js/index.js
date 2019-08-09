@@ -50,8 +50,8 @@ function createLoginSectionDetails() {
     let fullName = user.split(' ');
     let firstName = fullName[0];
     if (user == '' || user == null) {
-        $('#loginSection').append(`<input class="btn btn-outline-light" type="button" value="Login" id="loginButton" onclick="window.location.href='login.php'">`);
-    } else {
+        // $('#loginSection').append(`<input class="btn btn-outline-light" type="button" value="Login" id="loginButton" onclick="window.location.href='login.php'">`);
+    }   else {
         $('#loginSection').append(`<small>` + firstName + ` </small><input class=" ml-4 mr-0 btn btn-outline-light logout" type="button" value="Logout" id="logout" onclick="logout()">`);
         $('.login').toggle();
     }
@@ -61,7 +61,6 @@ function getActiveUser() {
 
     let user = localStorage.getItem('sessionUser');
     return user;
-
 }
 
 function logout() {
@@ -110,7 +109,6 @@ function moveElevator(floor) {
                                 if (offIndex !== (destinationPosition)) {
                                     trackOff(offIndex);
                                 }
-
                                 if (offIndex < destinationPosition) {
                                     elevatorLock = false;
                                 }
@@ -196,7 +194,6 @@ function updateFloor(floor) {
     let data = 'action=updateFloor&floor=' + floor;
     let dataType = 'text';
     callToServer(data, dataType);
-
 }
 
 function getCurrentFloor() {

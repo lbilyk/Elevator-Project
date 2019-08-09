@@ -19,7 +19,6 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet">
-    <link href="css/elevatorButton.css" rel="stylesheet">
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -42,7 +41,6 @@ session_start();
                 <div class="d-inline-block" id="loginSection"></div>
             </a>
         </li>
-<!--            <a href="logout.php" class="nav-link d-inline">Logout</a>-->
 
 <!-- Based on code from tutorialrepublic.com-->
 
@@ -84,7 +82,6 @@ session_start();
             </ul>
         </li>
     </ul>
-    </div>
 </nav>
 <!-- Modal HTML -->
 </body>
@@ -152,14 +149,13 @@ session_start();
         </div>
         <div class="elevator-controls container ">
             <div class="container elevator-button-box">
-                <button class="metal radial my-0" value="III" onclick="moveElevator(this.value)">III</button>
-                <button class="metal radial my-4" value="II" onclick="moveElevator(this.value)">II</button>
-                <button class="metal radial my-0" value="I" onclick="moveElevator(this.value)">I</button>
+                <input type="button" class="elevator-call-btn btn btn-outline-secondary " value="III" onclick="moveElevator(this.value)">
+                <input type="button" class="elevator-call-btn btn btn-outline-secondary " value="II" onclick="moveElevator(this.value)">
+                <input type="button" class="elevator-call-btn btn btn-outline-secondary " value="I" onclick="moveElevator(this.value)">
             </div>
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>

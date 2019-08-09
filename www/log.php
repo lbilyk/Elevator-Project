@@ -12,26 +12,66 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <script>
-    google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(plotStatData);
 </script>
 <body id="page-top">
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="index.php">Elevator Project</a>
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" href="#" id="sidebarToggle">
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
-    <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <li class="nav-item dropdown no-arrow">
-            <a class=" nav-link dropdown-toggle d-inline-block px-3" id="datetime"></a>
-            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <ul class="nav navbar-nav navbar-right ml-auto">
+        <li class="nav-item dropdown no-arrow mr-0">
+            <a class=" nav-link dropdown-toggle d-inline-block px-3 mr-4" id="datetime"></a>
+            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block" id="loginSection"></div>
-                <i class="fas fa-user-circle fa-fw"></i>
             </a>
-            <a href="logout.php" class="nav-link d-inline">Logout</a>
+        </li>
+
+        <!-- Based on code from tutorialrepublic.com-->
+
+        <li class="nav-item login">
+            <a data-toggle="dropdown" class="nav-link dropdown-toggle mr-3" href="#">Login</a>
+            <ul class="dropdown-menu form-wrapper">
+                <li>
+                    <form action="authenticate.php" method="POST">
+                        <p class="hint-text">Login to Elevator account.</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" name="username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-block" value="Login">
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item login">
+            <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1">Sign up</a>
+            <ul class="dropdown-menu form-wrapper">
+                <li>
+                    <form action="authenticate.php" method="post">
+                        <p class="hint-text">Fill in this form to create your account!</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Confirm Password" required="required">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-block" value="Sign up">
+                    </form>
+                </li>
+            </ul>
         </li>
     </ul>
 </nav>
+
 <div id="wrapper">
     <ul class="sidebar navbar-nav">
         <li class="nav-item ">
@@ -74,6 +114,7 @@
     </div>
     <div id="statData"></div>
 </div>
+
 
 <a href="#" class="back-to-top">
     <i class="fa fa-arrow-circle-up"></i>

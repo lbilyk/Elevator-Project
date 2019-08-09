@@ -1,7 +1,7 @@
 
 $(function () {
     setInterval(getLogDataFromServer, 1000);
-    getStatisticalDataFromServer();
+
 
 });
 
@@ -12,6 +12,7 @@ function getLogDataFromServer() {
     let response = callToServer(data,dataType);
     console.log(JSON.parse(response));
     displayLogData(JSON.parse(response));
+    getStatisticalDataFromServer();
 }
 
 function getStatisticalDataFromServer() {
@@ -26,13 +27,8 @@ function getStatisticalDataFromServer() {
 function displayLogData(data) {
 
     $('#logData').empty();
-    let iterations = data.length;
-    const maxIterations = 100;
 
-    if(data.length > maxIterations) {
-        iterations = maxIterations;
-    }
-    for (let i = iterations; i > 0; i--) {
+    for (let i = 0; i < data.length; i++) {
         let timestamp = data[i].Timestamp;
         let command = data[i].Command;
         let floor = data[i].Floor;
@@ -49,6 +45,7 @@ function displayLogData(data) {
 
 function plotStatData(statData) {
 
+    console.log(statData);
     let floor1 =  statData[0].call_count;
     let floor2 =  statData[1].call_count;
     let floor3 =  statData[2].call_count;
