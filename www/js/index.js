@@ -82,7 +82,8 @@ function moveElevator(floor) {
     let destinationPosition = getFloorPosition(floor);
 
     let tracks = document.getElementsByClassName('elevator-light');
-    $(tracks[currentPosition]).addClass('active');
+
+
 
     if ((floor - currentFloor) === 0) {
         return;
@@ -94,10 +95,12 @@ function moveElevator(floor) {
     if ((floor - currentFloor) < 0) {
         direction = DOWN;
     }
+    $('.elevator-light').removeClass('done');
 
     switch (direction) {
         case UP:
             (function trackOn(onIndex) {
+                $('.elevator-light').removeClass('done');
                 setTimeout(function () {
                     let track = tracks[onIndex];
                     $(track).addClass('active');
@@ -105,19 +108,21 @@ function moveElevator(floor) {
                         setTimeout(function () {
                             let track = tracks[offIndex];
                             $(track).removeClass('active');
-                            if (--offIndex) {
+                            if (--offIndex + 1) {
                                 if (offIndex !== (destinationPosition)) {
                                     trackOff(offIndex);
+                                }
+                                else {
+                                    track = tracks[destinationPosition];
+                                    $(track).addClass('done');
                                 }
                                 if (offIndex < destinationPosition) {
                                     elevatorLock = false;
                                 }
-                            } else {
-                                $(track).addClass('done');
                             }
                         }, travelTime++)
                     })(currentPosition);
-                    if (--onIndex + 1) {
+                    if (--onIndex) {
                         if (onIndex !== (destinationPosition)) {
                             trackOn(onIndex);
                         }
@@ -127,6 +132,7 @@ function moveElevator(floor) {
             break;
         case DOWN:
             (function trackOn(onIndex) {
+              $('.elevator-light').removeClass('done');
                 setTimeout(function () {
                     let track = tracks[onIndex];
                     $(track).addClass('active');
@@ -138,14 +144,15 @@ function moveElevator(floor) {
                                 if (offIndex !== (destinationPosition)) {
                                     trackOff(offIndex);
                                 }
-                                if (offIndex > destinationPosition) {
-                                    elevatorLock = false;
+                                else {
+                                    track = tracks[destinationPosition];
+                                    $(track).addClass('done');
                                 }
                             }
                         }, travelTime++)
                     })(currentPosition);
                     if (++onIndex) {
-                        if (onIndex !== (destinationPosition + 1)) {
+                        if (onIndex !== (destinationPosition)) {
                             trackOn(onIndex);
                         }
                     }

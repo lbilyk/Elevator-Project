@@ -92,7 +92,6 @@ function filterLogbookEntries() {
     let filterMinDate = new Date(minDate);
     let filterMaxDate = new Date(maxDate);
 
-
     for(let i = 0; i < entries.length; i++) {
         let date = new Date(entries[i].date);
         if((date < filterMinDate - 1) || (date > filterMaxDate + 1) || (name !== entries[i].username && name !== filterNameDefault)) {
