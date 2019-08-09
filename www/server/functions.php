@@ -60,7 +60,23 @@ function getCurrentFloor() {
     global $mysqli;
     $query = "SELECT currentFloor FROM elevatorNetwork WHERE nodeID = 1";
     $statement = $mysqli->prepare($query);
-    $result = $statement->execute();
-    return $result;
+    $statement->execute();
+    $result = $statement->get_result();
+    while($row = mysqli_fetch_assoc($result)) {
+        return json_encode($row['currentFloor']);
+    }
+}
 
+function getStatData() {
+
+    global $mysqli;
+    $query = "SELECT * FROM log";
+    $data = array();
+    $statement = $mysqli->prepare($query);
+    $statement->execute();
+    $result = $statement->get_result();
+    while($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+    return json_encode($data);
 }

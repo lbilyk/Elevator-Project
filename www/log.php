@@ -9,7 +9,12 @@
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+<script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+</script>
 <body id="page-top">
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="index.php">Elevator Project</a>
@@ -67,6 +72,7 @@
         </h2>
     <div class="list-group container-fluid mt-4" id ="logData"></div>
     </div>
+    <div id="statData"></div>
 </div>
 
 <a href="#" class="back-to-top">

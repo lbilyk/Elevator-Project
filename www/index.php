@@ -1,10 +1,11 @@
 <?php
 session_start();
 ?>
-    <script>
-        let user = '<?php echo $_SESSION['user']; ?>'
-        localStorage.setItem('sessionUser',user);
-    </script>
+<script>
+    localStorage.setItem('sessionUser','');
+    let user = '<?php echo $_SESSION['user']; ?>';
+    localStorage.setItem('sessionUser',user);
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +19,14 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/index.css" rel="stylesheet">
+    <link href="css/elevatorButton.css" rel="stylesheet">
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).on("click", ".navbar-right .dropdown-menu", function(e){
+            e.stopPropagation();
+        });
+    </script>
 </head>
 <body id="page-top">
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
@@ -25,18 +34,61 @@ session_start();
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
-    <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <li class="nav-item dropdown no-arrow">
-            <a class=" nav-link dropdown-toggle d-inline-block px-3" id="datetime"></a>
+    <ul class="nav navbar-nav navbar-right ml-auto">
+        <li class="nav-item dropdown no-arrow mr-0">
+            <a class=" nav-link dropdown-toggle d-inline-block px-3 mr-4" id="datetime"></a>
             <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block" id="loginSection"></div>
-                <i class="fas fa-user-circle fa-fw"></i>
             </a>
-            <a href="logout.php" class="nav-link d-inline">Logout</a>
+        </li>
+<!--            <a href="logout.php" class="nav-link d-inline">Logout</a>-->
+
+<!-- Based on code from tutorialrepublic.com-->
+
+        <li class="nav-item login">
+            <a data-toggle="dropdown" class="nav-link dropdown-toggle mr-3" href="#">Login</a>
+            <ul class="dropdown-menu form-wrapper">
+                <li>
+                    <form action="authenticate.php" method="POST">
+                        <p class="hint-text">Login to Elevator account.</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" name="username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-block" value="Login">
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item login">
+            <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1">Sign up</a>
+            <ul class="dropdown-menu form-wrapper">
+                <li>
+                    <form action="authenticate.php" method="post">
+                        <p class="hint-text">Fill in this form to create your account!</p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Confirm Password" required="required">
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-block" value="Sign up">
+                    </form>
+                </li>
+            </ul>
         </li>
     </ul>
+    </div>
 </nav>
+<!-- Modal HTML -->
+</body>
+</html>
 <div id="wrapper">
     <ul class="sidebar navbar-nav">
         <li class="nav-item active">
@@ -70,43 +122,44 @@ session_start();
             </a>
         </li>
     </ul>
-    <div id="buildingContainer" class="container pt-5">
-        <div id="elevatorBuilding">
-            <div id="elevatorShaft">
-                <div id="elevatorContainer">
-                    <div id="elevator">
-                        <div class="door open-left" id="doorLeft"></div>
-                        <div class="door open-right" id="doorRight"></div>
-                    </div>
-                </div>
+    <div class="elevator-container container my-2">
+        <div class="elevator-building container">
+            <div class="elevator-shaft container">
+                <div class="container elevator-floor elevator-light">III</div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-floor elevator-light">II</div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-track elevator-light"></div>
+                <div class="container elevator-floor elevator-light">I</div>
+            </div>
+        </div>
+        <div class="elevator-controls container ">
+            <div class="container elevator-button-box">
+                <button class="metal radial my-0" value="III" onclick="moveElevator(this.value)">III</button>
+                <button class="metal radial my-4" value="II" onclick="moveElevator(this.value)">II</button>
+                <button class="metal radial my-0" value="I" onclick="moveElevator(this.value)">I</button>
             </div>
         </div>
     </div>
-    <div class="card bg-dark" id="elevatorControls">
-        <div class="card-text text-white text-center">Go To Floor</div>
-        <div class="card-body text-center">
-            <div class="form-group text-center justify-content-center">
-                <input type="button" class="btn elevator-button btn-outline-warning rounded-circle d-block my-2 mr-4 " value='3'
-                       onclick="moveElevator(this.value)">
-                <input type="button" class="btn elevator-button btn-outline-warning rounded-circle d-block my-2 mr-4" value='2'
-                       onclick="moveElevator(this.value)">
-                <input type="button" class="btn elevator-button btn-outline-warning rounded-circle d-block my-2 mr-4" value='1'
-                       onclick="moveElevator(this.value)">
-            </div>
-        </div>
-    </div>
-
 </div>
-<!--<div class="fixed-bottom">-->
-<!--    <div class="text-center pt-5">-->
-<!--        <div class="text-center pt-5">-->
-<!--            <hr/>-->
-<!--            <span>Copyright © Lyubomyr Bilyk</span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>

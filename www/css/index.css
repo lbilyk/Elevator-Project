@@ -55,6 +55,92 @@
     font-size: 0.5rem;
 }
 
+.navbar .form-inline {
+    display: inline-block;
+}
+
+.navbar .nav li {
+    position: relative;
+}
+
+.navbar .nav .btn-primary, .navbar .nav .btn-primary:active {
+    color: #ffffff;
+    background: #00BCD4;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    vertical-align: middle;
+    border: none;
+}
+
+.navbar .nav .btn-primary:hover, .navbar .nav .btn-primary:focus {
+    color: #ffffff;
+    outline: none;
+    background: #03A9F4;
+}
+
+.navbar .navbar-right li:first-child a {
+    padding-right: 30px;
+}
+
+.navbar .nav .get-started-btn {
+    min-width: 120px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.navbar .dropdown-menu {
+    border-radius: 1px;
+    border-color: #e5e5e5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+.navbar .dropdown-menu.form-wrapper {
+    width: 280px;
+    padding: 20px;
+    left: auto;
+    right: 0;
+    font-size: 14px;
+}
+
+.navbar .form-wrapper .hint-text {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.navbar .navbar-right .dropdown-toggle::after {
+    display: none;
+}
+
+@media (min-width: 1200px) {
+    .form-inline .input-group {
+        width: 300px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .dropdown-menu.form-wrapper {
+        width: 100%;
+        padding: 10px 15px;
+        background: transparent;
+        border: none;
+    }
+
+    .navbar .form-inline {
+        display: block;
+    }
+
+    .navbar .input-group {
+        width: 100%;
+    }
+
+    .navbar .nav .btn-primary, .navbar .nav .btn-primary:active {
+        display: block;
+    }
+}
+
+
 @media (min-width: 768px) {
     .navbar-nav .form-inline .input-group {
         width: auto;
@@ -307,144 +393,95 @@ body.sidebar-toggled footer.sticky-footer {
     transform: rotateY(0deg);
 }
 
-#elevatorBuilding {
-    background-color: #6a8db3;
-    height: 600px;
+.elevator-container {
+    background-color: #fff;
+    width: 50vw;
+    height: calc(100vh - 135px);
+}
+
+.elevator-controls {
     position: relative;
-    z-index: 1991;
+    margin-top: calc(-100% + 180px);
+    margin-left: calc(-50% + 256px);
+    background-color: #d3d9df;
+    padding-top: 20px;
+    width: 256px;
+    height: 100%;
+    border-radius: 5px;
 }
 
-#elevatorShaft {
-    background-color: #002752;
+.elevator-button-box {
     position: relative;
-    /*top: 20px;*/
-    height: 600px;
-    z-index: 10000000;
-
-    /*padding-top: 100px;*/
-}
-
-#elevator {
-    background-color: #343a40;
-    width: 100%;
-    height: 128px;
-    position: relative;
-    z-index: 199;
-}
-
-#elevator .door {
-    background-color: #6c757d;
-    width: 48%;
-    height: 128px;
-    transition: all 300ms ease-in;
-    position: absolute;
-    z-index: 1;
-}
-
-#doorLeft {
-    left: 0;
-    position: absolute;
-    z-index: 1;
-}
-
-#doorRight {
-    right: 0;
-    position: absolute;
-    z-index: 1;
-}
-
-.open-right {
-
-    right: -50% !important;
-    position: absolute;
-    z-index: 1;
-}
-
-.open-left {
-
-    left: -50% !important;
-    position: absolute;
-    z-index: 1;
-}
-
-#elevatorContainer {
-    position: absolute;
-    width: 100%;
-    bottom: 64px;
-}
-
-#elevatorBase {
-    background-color: #343a40;
-    position: absolute;
-    bottom: 0;
-    height: 128px;
-}
-
-#elevatorControls {
-    position: relative;
+    top: 4px;
+    padding: 0;
     text-align: center;
-    margin-left: 32px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-#buildingContainer {
-    position: absolute;
-    right: 0px;
-}
-
-.elevator-button{
+.elevator-call-btn {
+    font-size: 2.5rem;
     position: relative;
+    padding: 0;
 }
 
-@media (min-width: 768px) {
-    #buildingContainer {
-        top: 32px;
-    }
-    #elevatorBuilding{
-        width: 33%;
-        margin-left: 66%;
-    }
-    #elevatorShaft{
-        width: 33%;
-        margin-left: 33%;
-    }
-    .btn-outline-warning {
-        width: 100%;
-    }
-    .elevator-button {
-        width: 64px !important;
-        height: 64px !important;
-        font-size: 12pt !important;
-    }
-    #elevatorControls{
-        height: 280px;
-        margin-top: calc(30vh);
-    }
-
+.elevator-building {
+    padding-top: 30px;
+    margin-left: 400px;
+    background-color: rgba(0,0,0,0);
+    width: 25vw;
+    height: calc(100vh - 135px);
 }
-@media (max-width: 768px) {
-    #buildingContainer {
-        top: 64px;
-        height: 860px;
-    }
-    #elevatorBuilding{
-        width: 50%;
-        left: 50%;
-    }
-    #elevatorShaft{
-        width: 33%;
-        left: 33%;
-    }
-    .elevator-button {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 6pt !important;
-    }
 
-    #elevatorControls{
-        height: 180px;
-        margin-top: calc(60vh);
-    }
+.elevator-shaft {
+    background-color: rgba(0,0,0,0);
+
+    height: calc(100vh - 135px);
+    width: 10vw;
 }
+
+.elevator-track {
+
+    position: relative;
+    padding: 0;
+    top: 10px;
+    margin-bottom: 5px;
+    height: 20px;
+    max-width: 30px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 10);
+    border-style: solid;
+    border-width: 1.5px 1.5px 1.5px 1.5px;
+    border-color: #6c757d;
+}
+
+.elevator-floor {
+
+    position: relative;
+    padding: 0;
+    top: 10px;
+    margin-bottom: 5px;
+    bottom: 10px;
+    height: 20px;
+    max-width: 120px;
+    border-radius: 20%;
+
+    background-color: rgba(255, 255, 255, 10);
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: #6c757d;
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.elevator-light.active{
+    background-color: #ddd;
+    width: 10px;
+    transition: width 100ms;
+}
+.elevator-light.done{
+    background-color: #ddd;
+}
+
 .back-to-top {
     position: fixed;
     bottom: 64px;
@@ -463,4 +500,9 @@ body.sidebar-toggled footer.sticky-footer {
 #logData {
     height: 70vh;
     overflow-y: scroll;
+}
+
+.logout:hover{
+    background-color: #00BCD4;
+    color: white;
 }

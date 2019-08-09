@@ -2,7 +2,7 @@
 session_start();
 
 if($_SESSION['user'] == null || $_SESSION == '') {
-    header('Location: login.php');
+    header('Location: index.php');
 } else {
     ?>
     <script>
@@ -34,17 +34,12 @@ if($_SESSION['user'] == null || $_SESSION == '') {
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
         <li class="nav-item dropdown no-arrow">
             <a class=" nav-link dropdown-toggle d-inline-block px-3" id="datetime"></a>
-            <a class="nav-link dropdown-toggle d-inline" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-inline" href="#login" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-inline-block" id="loginSection"></div>
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <a href="logout.php" class="nav-link d-inline">Logout</a>
 
-<!--            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">-->
-<!--                <a class="dropdown-item" href="#">Settings</a>-->
-<!--                <div class="dropdown-divider"></div>-->
-<!--                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>-->
-<!--            </div>-->
         </li>
     </ul>
 </nav>
@@ -81,20 +76,6 @@ if($_SESSION['user'] == null || $_SESSION == '') {
             </a>
         </li>
     </ul>
-    <!--<select class="browser-default custom-select">-->
-    <!--<option selected>Select a user</option>-->
-    <!--<option value="1">Ferencz Dominguez</option>-->
-    <!--<option value="2">Lyubomyr Bilyk</option>-->
-    <!--<option value="3">Nik Kershaw</option>-->
-    <!--</select>-->
-
-    <!--<footer class="sticky-footer">-->
-    <!--<div class="container my-auto">-->
-    <!--<div class="copyright text-center my-auto">-->
-    <!--<span>Copyright © Lyubomyr Bilyk</span>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</footer>-->
     <div class="container-fluid px-5 py-2" id="logbookContainer">
         <div>
             <input id="minDate" type="date"> to <input id="maxDate" type="date">

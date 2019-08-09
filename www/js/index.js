@@ -2,30 +2,33 @@ const SERVER_REQUESTS = 'server/server_requests.php';
 const LU = "Lyubomyr Bilyk";
 const FERENCZ = "Ferencz Dominguez";
 const NIK = "Nik Kershaw";
-let currentFloor = 1;
-let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+// let currentFloor = 1;
+let elevatorLock = false;
+let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 $(function () {
     updateTime();
-    setInterval(updateTime,1000);
+    setInterval(updateTime, 1000);
     $('#sidebarToggle').on('click', function (event) {
         event.preventDefault();
         $("body").toggleClass('sidebar-toggled');
         $(".sidebar").toggleClass('toggled');
     });
+    // moveElevator(getCurrentFloor());
     createLoginSectionDetails();
-    getCurrentFloor();
+    // getCurrentFloor();
 
 });
 
 function updateTime() {
     let date = new Date();
-    let time =('0'  + date.getHours()).slice(-2)+':'+ ('0'  + date.getMinutes()).slice(-2)+':'+('0' + date.getSeconds()).slice(-2);
-    let day = (months[date.getMonth()] + ' ' + ('0'  + date.getDate()).slice(-2) + ' ' + date.getFullYear())
+    let time = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
+    let day = (months[date.getMonth()] + ' ' + ('0' + date.getDate()).slice(-2) + ' ' + date.getFullYear())
     let today = time + ' - ' + day;
     $('#datetime').html(today.toLocaleString());
 }
-function callToServer(data,dataType ) {
+
+function callToServer(data, dataType) {
 
     var response;
     $.ajax({
@@ -34,7 +37,7 @@ function callToServer(data,dataType ) {
         data: data,
         async: false,
         dataType: dataType,
-        success: function(data) {
+        success: function (data) {
             response = data;
         },
     });
@@ -46,75 +49,138 @@ function createLoginSectionDetails() {
     let user = getActiveUser();
     let fullName = user.split(' ');
     let firstName = fullName[0];
-    if(user == '' || user == null) {
-        $('#loginSection').append( `<input class="btn btn-outline-light" type="button" value="Login" id="loginButton" onclick="window.location.href='login.php'">`);
+    if (user == '' || user == null) {
+        $('#loginSection').append(`<input class="btn btn-outline-light" type="button" value="Login" id="loginButton" onclick="window.location.href='login.php'">`);
     } else {
-        $('#loginSection').append( `<small>` + firstName + ` </small>`);
+        $('#loginSection').append(`<small>` + firstName + ` </small><input class=" ml-4 mr-0 btn btn-outline-light logout" type="button" value="Logout" id="logout" onclick="logout()">`);
+        $('.login').toggle();
     }
 }
+
 function getActiveUser() {
 
     let user = localStorage.getItem('sessionUser');
     return user;
 
 }
-function setProfileImage() {
 
-    let user = localStorage.getItem('sessionUser');
-    let userImage = '';
+function logout() {
 
-    switch (user) {
-        case LU:
-            userImage = '/img/lu.jpg';
-            break;
-        case FERENCZ:
-            userImage = '/img/ferencz.jpg';
-            break;
-        case NIK:
-            userImage = '/img/nik.jpg';
-            break;
-    }
+    localStorage.removeItem('sessionUser');
+    window.location.href = 'logout.php';
 }
 
 function moveElevator(floor) {
 
-    let moveHeight = floor * 200;
-    let animation = 2000 / (Math.abs(currentFloor - floor));
-    if (floor == currentFloor) {
+    const UP = 'up';
+    const DOWN = 'down';
+    let travelTime = 200;
+
+    floor = getFloorNumber(floor);
+    let currentFloor = getCurrentFloor();
+
+    let currentPosition = getFloorPosition(currentFloor);
+    let destinationPosition = getFloorPosition(floor);
+
+    let tracks = document.getElementsByClassName('elevator-light');
+    $(tracks[currentPosition]).addClass('active');
+
+    if ((floor - currentFloor) === 0) {
         return;
     }
 
-    let data = "action=updateFloor&floor=" + floor;
-    let dataType = 'text';
-   let result = callToServer(data,dataType);
+    updateFloor(floor);
 
-    $("#doorRight").removeClass("open-right");
-    $("#doorLeft").removeClass("open-left");
+    let direction = UP;
+    if ((floor - currentFloor) < 0) {
+        direction = DOWN;
+    }
 
-    setTimeout(function(){
-        $("#elevatorContainer").css("transition","all " + animation + "ms linear");
-        $("#elevatorContainer").css("bottom",moveHeight - 128 +"px");
-        currentFloor = floor;
-        setTimeout(function(){
+    switch (direction) {
+        case UP:
+            (function trackOn(onIndex) {
+                setTimeout(function () {
+                    let track = tracks[onIndex];
+                    $(track).addClass('active');
+                    (function trackOff(offIndex) {
+                        setTimeout(function () {
+                            let track = tracks[offIndex];
+                            $(track).removeClass('active');
+                            if (--offIndex) {
+                                if (offIndex !== (destinationPosition)) {
+                                    trackOff(offIndex);
+                                }
 
-            $("#doorRight").addClass("open-right");
-            $("#doorLeft").addClass("open-left");
-
-        },animation);
-        },300);
+                                if (offIndex < destinationPosition) {
+                                    elevatorLock = false;
+                                }
+                            } else {
+                                $(track).addClass('done');
+                            }
+                        }, travelTime++)
+                    })(currentPosition);
+                    if (--onIndex + 1) {
+                        if (onIndex !== (destinationPosition)) {
+                            trackOn(onIndex);
+                        }
+                    }
+                }, travelTime++)
+            })(currentPosition);
+            break;
+        case DOWN:
+            (function trackOn(onIndex) {
+                setTimeout(function () {
+                    let track = tracks[onIndex];
+                    $(track).addClass('active');
+                    (function trackOff(offIndex) {
+                        setTimeout(function () {
+                            let track = tracks[offIndex];
+                            $(track).removeClass('active');
+                            if (++offIndex) {
+                                if (offIndex !== (destinationPosition)) {
+                                    trackOff(offIndex);
+                                }
+                                if (offIndex > destinationPosition) {
+                                    elevatorLock = false;
+                                }
+                            }
+                        }, travelTime++)
+                    })(currentPosition);
+                    if (++onIndex) {
+                        if (onIndex !== (destinationPosition + 1)) {
+                            trackOn(onIndex);
+                        }
+                    }
+                }, travelTime++)
+            })(currentPosition);
+            break;
+    }
 }
 
-$(window).scroll(function() {
+function getFloorNumber(floor) {
+
+    return floor.length;
+}
+
+function getFloorPosition(floor) {
+
+    const MAXFLOOR = 3;
+    const TRACK_LENGTH = 11;
+
+    let position = (MAXFLOOR - floor) * TRACK_LENGTH;
+    return position;
+}
+
+$(window).scroll(function () {
     var scrollAmount = $(this).scrollTop();
 
     if (scrollAmount > 50) {
         $('.back-to-top').fadeIn();
-    }
-    else {
+    } else {
         $('.back-to-top').fadeOut();
     }
-    if(scrollAmount > 200) {
-        $('.back-to-top').css('visibility','visible');
+    if (scrollAmount > 200) {
+        $('.back-to-top').css('visibility', 'visible');
     }
 });
 
@@ -125,11 +191,18 @@ $('.back-to-top').click(function () {
     return false;
 });
 
+function updateFloor(floor) {
+
+    let data = 'action=updateFloor&floor=' + floor;
+    let dataType = 'text';
+    callToServer(data, dataType);
+
+}
+
 function getCurrentFloor() {
 
     let data = 'action=getCurrentFloor';
     let dataType = 'text';
-    let response = callToServer(data,dataType);
-    console.log("Current Floor: " + response);
-    moveElevator(response);
+    let response = callToServer(data, dataType);
+    return parseInt(response);
 }

@@ -10,7 +10,8 @@ $(function() {
 
 function createLogbookEntries(entriesJSON) {
 
-    let entries = JSON.parse(entriesJSON);
+
+ let entries = JSON.parse(entriesJSON);
     console.log(entries);
 
     for(let i = 0; i < entries.length; i++) {

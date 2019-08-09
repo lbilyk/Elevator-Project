@@ -20,12 +20,12 @@ if ($username && $password) {
     } else {
         $authError = true;
         session_destroy();
-        header('Location: login.php?authError='.$authError);
+        header('Location: index.php?authError='.$authError);
         exit();
     }
 }
 else {
     session_destroy();
-    header('Location: login.php');
+    header('Location: index.php');
 
 }
