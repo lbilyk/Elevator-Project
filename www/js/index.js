@@ -2,7 +2,6 @@ const SERVER_REQUESTS = 'server/server_requests.php';
 const LU = "Lyubomyr Bilyk";
 const FERENCZ = "Ferencz Dominguez";
 const NIK = "Nik Kershaw";
-// let currentFloor = 1;
 let elevatorLock = false;
 let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -14,9 +13,7 @@ $(function () {
         $("body").toggleClass('sidebar-toggled');
         $(".sidebar").toggleClass('toggled');
     });
-    // moveElevator(getCurrentFloor());
     createLoginSectionDetails();
-    // getCurrentFloor();
 
 });
 

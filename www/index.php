@@ -84,9 +84,6 @@ session_start();
         </li>
     </ul>
 </nav>
-<!-- Modal HTML -->
-</body>
-</html>
 <div id="wrapper">
     <ul class="sidebar navbar-nav">
         <li class="nav-item active">

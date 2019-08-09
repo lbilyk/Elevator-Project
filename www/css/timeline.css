@@ -1,10 +1,10 @@
-/*body { background: #333; }*/
 
 img { border: 0; max-width: 100%; }
 
+/*Based on pre-existing bootstrap code*/
+
 .page-header h2 {
     font-size: 3.26em;
-    /*text-align: center;*/
     color: #212529;
 }
 #timeline{
